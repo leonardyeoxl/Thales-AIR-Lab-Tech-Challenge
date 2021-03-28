@@ -34,18 +34,12 @@ func FetchAirports() ([]model.AirportItems, error) {
 
 	fmt.Println(string(bytes))
 
-	// Create a variable of the same type as our model
-   // var airportResp model.AirportResponse
-	// // Decode the data
-   // if err := json.NewDecoder(resp.Body).Decode(&airportResp); err != nil {
-   //    log.Fatal(err)
-   // }
-
    airports := []model.AirportItems{}
    err = json.NewDecoder(resp.Body).Decode(&airports)
    if err != nil {
 		log.Fatalln(err)
 	}
+   fmt.Println(string(airports))
 
    return airports, nil
 }
