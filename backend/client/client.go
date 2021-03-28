@@ -5,6 +5,7 @@ import (
    "log"
    "net/http"
    "io/ioutil"
+   "fmt"
 
    "github.com/leonardyeoxl/Thales-AIR-Lab-Tech-Challenge/backend/model"
 )
@@ -32,14 +33,14 @@ func FetchAirports() (string, error) {
 
 	fmt.Println(string(bytes))
 
-   return string(bytes), nil
+   // return string(bytes), nil
 
-	// // Create a variable of the same type as our model
-   // var airportResp model.AirportResponse
-	// // Decode the data
-   // if err := json.NewDecoder(resp.Body).Decode(&airportResp); err != nil {
-   //    log.Fatal(err)
-   // }
-	// // Invoke the text output function & return it with nil as the error value
-   // return airportResp.TextOutput(), nil
+	// Create a variable of the same type as our model
+   var airportResp model.AirportResponse
+	// Decode the data
+   if err := json.NewDecoder(resp.Body).Decode(&airportResp); err != nil {
+      log.Fatal(err)
+   }
+	// Invoke the text output function & return it with nil as the error value
+   return airportResp.TextOutput(), nil
 }
