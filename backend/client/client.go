@@ -5,6 +5,7 @@ import (
    "net/http"
    "io/ioutil"
    "fmt"
+   "encoding/json"
 
    "github.com/leonardyeoxl/Thales-AIR-Lab-Tech-Challenge/backend/model"
 )
@@ -41,7 +42,7 @@ func FetchAirports() model.Airport {
    // }
 
    airports := model.Airport{}
-   err = json.NewDecoder(r.Body).Decode(&airports)
+   err = json.NewDecoder(resp.Body).Decode(&airports)
    
    return airports
 }
