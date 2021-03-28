@@ -1,9 +1,5 @@
 package model
 
-import (
-   "fmt"
-)
-
 // Cryptoresponse is exported, it models the data we receive.
 type AirportItem struct {
    UID              string    `json:"uid"`
