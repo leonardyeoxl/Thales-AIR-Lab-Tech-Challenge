@@ -34,7 +34,19 @@ func FetchAirports() ([]model.Airport, error) {
 
 	fmt.Println(string(bytes))
 
-   airports := []model.Airport
+   data := struct {
+      Items []struct {
+         UID              string    `json:"uid"`
+         NAME             string    `json:"name"`
+         IATA             string    `json:"iata"`
+         ICAO             string    `json:"icao"`
+         LAT              float32   `json:"lat"`
+         LNG              float32   `json:"lng"`
+         ALT              int       `json:"alt"`
+      } `json:"items"`
+  }{}
+
+   // airports := []model.Airport
    // airports := make([]model.Airport{},0)
    // err = json.NewDecoder(resp.Body).Decode(&airports)
    err = json.Unmarshal(bytes, &airports)
