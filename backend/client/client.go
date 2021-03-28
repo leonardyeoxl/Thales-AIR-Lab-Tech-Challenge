@@ -40,7 +40,7 @@ func FetchAirports() ([]model.Airport, error) {
    if err != nil {
 		log.Fatalln(err)
 	}
-   fmt.Printf("%s\n", airports[0].UID)
+   fmt.Printf("%s", airports)
 
    return airports, nil
 }
