@@ -1,6 +1,7 @@
 package main
 
 import (
+    "encoding/json"
     "fmt"
     "log"
 
@@ -9,9 +10,10 @@ import (
 
 func main() {
     airports, err := client.FetchAirports()
+    newsJson, err := json.Marshal(airports)
     if err != nil {
-        log.Println(err)
-      }
+        panic(err)
+    }
 
-    fmt.Println(airports)
+    fmt.Println(newsJson)
 }

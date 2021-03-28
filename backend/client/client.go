@@ -1,7 +1,6 @@
 package client
 
 import (
-   "encoding/json"
    "log"
    "net/http"
    "io/ioutil"
@@ -10,7 +9,7 @@ import (
    "github.com/leonardyeoxl/Thales-AIR-Lab-Tech-Challenge/backend/model"
 )
 
-func FetchAirports() (string, error) {
+func FetchAirports() (struct, error) {
    contentType := "application/json"
 	// Build The URL string	
    URL := "https://open-atms.airlab.aero/api/v1/airac/airports"
@@ -35,11 +34,14 @@ func FetchAirports() (string, error) {
 	fmt.Println(string(bytes))
 
 	// Create a variable of the same type as our model
-   var airportResp model.AirportResponse
-	// Decode the data
-   if err := json.NewDecoder(resp.Body).Decode(&airportResp); err != nil {
-      log.Fatal(err)
-   }
-	// Invoke the text output function & return it with nil as the error value
-   return airportResp.TextOutput(), nil
+   // var airportResp model.AirportResponse
+	// // Decode the data
+   // if err := json.NewDecoder(resp.Body).Decode(&airportResp); err != nil {
+   //    log.Fatal(err)
+   // }
+
+   airports := Airport{}
+   err = json.NewDecoder(r.Body).Decode(&airports)
+   
+   return airports
 }
