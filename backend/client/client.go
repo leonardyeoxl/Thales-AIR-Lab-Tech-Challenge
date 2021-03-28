@@ -10,7 +10,19 @@ import (
    "github.com/leonardyeoxl/Thales-AIR-Lab-Tech-Challenge/backend/model"
 )
 
-func FetchAirports() ([]model.Airport, error) {
+type Airport struct {
+   type Items []struct {
+      UID              string    `json:"uid"`
+      NAME             string    `json:"name"`
+      IATA             string    `json:"iata"`
+      ICAO             string    `json:"icao"`
+      LAT              float32   `json:"lat"`
+      LNG              float32   `json:"lng"`
+      ALT              int       `json:"alt"`
+   } `json:"items"`
+}
+
+func FetchAirports() (Airport, error) {
    contentType := "application/json"
 	// Build The URL string	
    URL := "https://open-atms.airlab.aero/api/v1/airac/airports"
@@ -34,17 +46,7 @@ func FetchAirports() ([]model.Airport, error) {
 
 	fmt.Println(string(bytes))
 
-   airports := struct {
-      Items []struct {
-         UID              string    `json:"uid"`
-         NAME             string    `json:"name"`
-         IATA             string    `json:"iata"`
-         ICAO             string    `json:"icao"`
-         LAT              float32   `json:"lat"`
-         LNG              float32   `json:"lng"`
-         ALT              int       `json:"alt"`
-      } `json:"items"`
-  }{}
+   airports := Airport{}
 
    // airports := []model.Airport
    // airports := make([]model.Airport{},0)
