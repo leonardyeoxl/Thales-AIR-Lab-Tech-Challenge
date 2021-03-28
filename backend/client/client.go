@@ -9,7 +9,7 @@ import (
    "github.com/leonardyeoxl/Thales-AIR-Lab-Tech-Challenge/backend/model"
 )
 
-func FetchAirports() []Airport {
+func FetchAirports() model.Airport {
    contentType := "application/json"
 	// Build The URL string	
    URL := "https://open-atms.airlab.aero/api/v1/airac/airports"
@@ -40,7 +40,7 @@ func FetchAirports() []Airport {
    //    log.Fatal(err)
    // }
 
-   airports := Airport{}
+   airports := model.Airport{}
    err = json.NewDecoder(r.Body).Decode(&airports)
    
    return airports
