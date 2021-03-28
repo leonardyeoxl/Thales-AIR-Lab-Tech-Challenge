@@ -20,6 +20,7 @@ func FetchAirports() (string, error) {
       log.Fatal(err)
    }
    req.Header.Set("Content-Type", contentType)
+   req.Header.Set("api-key", "lgBaEkJ1TLQrwFDhtwe2mqLWIgoiyxue9kmrNkvOKpdjfhyXHIcdw7MNLmTLopH6")
    resp, err := http.DefaultClient.Do(req)
    if err != nil {
       log.Fatal(err)
