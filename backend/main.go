@@ -8,11 +8,15 @@ import (
 )
 
 func main() {
-    airports := client.FetchAirports()
+    airports err:= client.FetchAirports()
+    if err != nil {
+        panic(err)
+    }
+
     newsJson, err := json.Marshal(airports)
     if err != nil {
         panic(err)
     }
 
-    fmt.Println(newsJson)
+    fmt.Println(newsJson[0].UID)
 }
