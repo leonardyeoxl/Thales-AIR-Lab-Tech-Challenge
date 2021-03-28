@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+    backend:
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        volumes:
+            - "./backend/:/app"
+        command: ["go","run","main.go"]
+        networks:
+            - common_net
+
+networks:
+  common_net:
+    driver: bridge
