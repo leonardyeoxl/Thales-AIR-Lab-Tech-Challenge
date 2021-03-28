@@ -2,21 +2,22 @@ package main
 
 import (
     "encoding/json"
+    "log"
     "fmt"
 
     "github.com/leonardyeoxl/Thales-AIR-Lab-Tech-Challenge/backend/client"
 )
 
 func main() {
-    airports err:= client.FetchAirports()
+    airports, err:= client.FetchAirports()
     if err != nil {
-        panic(err)
+        log.Fatalln(err)
     }
 
-    newsJson, err := json.Marshal(airports)
+    airports_json, err := json.Marshal(airports)
     if err != nil {
-        panic(err)
+        log.Fatalln(err)
     }
 
-    fmt.Println(newsJson[0].UID)
+    fmt.Println(string(airports_json))
 }
