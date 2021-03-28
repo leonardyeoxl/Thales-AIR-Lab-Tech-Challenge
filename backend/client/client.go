@@ -34,8 +34,6 @@ func FetchAirports() (string, error) {
 
 	fmt.Println(string(bytes))
 
-   // return string(bytes), nil
-
 	// Create a variable of the same type as our model
    var airportResp model.AirportResponse
 	// Decode the data
