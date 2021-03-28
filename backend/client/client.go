@@ -39,7 +39,8 @@ func FetchAirports() ([]model.AirportItems, error) {
    if err != nil {
 		log.Fatalln(err)
 	}
-   fmt.Println(string(airports))
+   // fmt.Println(string(airports))
+   fmt.Printf("%+v\n", airports)
 
    return airports, nil
 }
