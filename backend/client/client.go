@@ -9,7 +9,7 @@ import (
    "github.com/leonardyeoxl/Thales-AIR-Lab-Tech-Challenge/backend/model"
 )
 
-func FetchAirports() (struct, error) {
+func FetchAirports() []Airport {
    contentType := "application/json"
 	// Build The URL string	
    URL := "https://open-atms.airlab.aero/api/v1/airac/airports"
