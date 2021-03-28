@@ -34,7 +34,7 @@ func FetchAirports() ([]model.Airport, error) {
 
 	fmt.Println(string(bytes))
 
-   data := struct {
+   airports := struct {
       Items []struct {
          UID              string    `json:"uid"`
          NAME             string    `json:"name"`
