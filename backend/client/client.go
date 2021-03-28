@@ -34,7 +34,8 @@ func FetchAirports() ([]model.Airport, error) {
 
 	fmt.Println(string(bytes))
 
-   airports := []model.Airport{}
+   // airports := []model.Airport{}
+   airports := make([]Airport,0)
    err = json.NewDecoder(resp.Body).Decode(&airports)
    if err != nil {
 		log.Fatalln(err)
