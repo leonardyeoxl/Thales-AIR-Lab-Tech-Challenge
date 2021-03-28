@@ -2,7 +2,6 @@ package client
 
 import (
    "encoding/json"
-   "fmt"
    "log"
    "net/http"
 
@@ -10,9 +9,10 @@ import (
 )
 
 func FetchAirports() (string, error) {
-	//Build The URL string	
-   	URL := "https://open-atms.airlab.aero/api/v1/airac/airports"
-	//We make HTTP request using the Get function
+   contentType := "application/json"
+	// Build The URL string	
+   URL := "https://open-atms.airlab.aero/api/v1/airac/airports"
+	// Make HTTP request using the Get function
 	req, err := http.NewRequest("GET", URL, nil)
     if err != nil {
         log.Fatal(err)
@@ -24,12 +24,12 @@ func FetchAirports() (string, error) {
     }
     defer resp.Body.Close()
 
-	//Create a variable of the same type as our model
+	// Create a variable of the same type as our model
    var airportResp model.AirportResponse
-	//Decode the data
+	// Decode the data
    if err := json.NewDecoder(resp.Body).Decode(&airportResp); err != nil {
       log.Fatal(err)
    }
-	//Invoke the text output function & return it with nil as the error value
+	// Invoke the text output function & return it with nil as the error value
    return airportResp.TextOutput(), nil
 }
