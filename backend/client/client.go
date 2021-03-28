@@ -36,7 +36,8 @@ func FetchAirports() ([]model.Airport, error) {
 
    // airports := []model.Airport{}
    airports := make([]model.Airport,0)
-   err = json.NewDecoder(resp.Body).Decode(&airports)
+   // err = json.NewDecoder(resp.Body).Decode(&airports)
+   err = json.Unmarshal(resp.Body, &airports)
    if err != nil {
 		log.Fatalln(err)
 	}
