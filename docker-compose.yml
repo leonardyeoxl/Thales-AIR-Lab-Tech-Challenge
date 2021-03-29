@@ -1,13 +1,37 @@
 version: '2'
 
 services:
+    mq:
+        image: "rabbitmq:3.8.14-management"
+        ports:
+            - "15672:15672"
+            - "5672:5672"
+        environment:
+            - RABBITMQ_DEFAULT_USER=guest
+            - RABBITMQ_DEFAULT_PASS=guest
+        tty: true
+        networks:
+            - common_net
     backend:
         build:
             context: ./backend
             dockerfile: Dockerfile
+        restart: always
         volumes:
             - "./backend/:/app"
-        command: ["go","run","main.go"]
+        command: bash -c "sleep 20; cd src; python main.py;"
+        networks:
+            - common_net
+    api:
+        build:
+            context: ./api
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - "8000:8000"
+        volumes:
+            - "./api/:/app"
+        command:  bash -c "sleep 20; cd src; uvicorn main:app --host 0.0.0.0 --port 8000;"
         networks:
             - common_net
 
