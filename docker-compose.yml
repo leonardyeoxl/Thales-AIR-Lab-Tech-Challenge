@@ -34,6 +34,19 @@ services:
         command:  bash -c "sleep 20; cd src; uvicorn main:app --host 0.0.0.0 --port 8000;"
         networks:
             - common_net
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - "8080:8080"
+        volumes:
+            - "./frontend/frontend/:/app"
+        command:  /bin/sh -c "sleep 20; npm run serve;"
+        networks:
+            - common_net
+
 
 networks:
   common_net:
