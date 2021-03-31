@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Thales AIR Lab Tech Challenge"/>
+    <STARSANDSIDS msg="Thales AIR Lab Tech Challenge"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import STARSANDSIDS from './components/STARSANDSIDS.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    STARSANDSIDS
   }
 }
 </script>
