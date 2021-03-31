@@ -1,11 +1,13 @@
 name: Docker Compose Actions Workflow
-on: main
+on: push
 jobs:
-  test:
+  curl:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Build the stack
-        run: docker-compose up -d
-      - name: Test
-        run: curl -X 'GET' 'http://localhost:8000/STARS-AND-SIDS' -H 'accept: application/json'
+    - uses: actions/checkout@v2
+    - name: Build the stack
+      run: docker-compose up -d
+    - name: curl
+      uses: wei/curl@master
+      with:
+        args: -X GET http://localhost:8000/STARS-AND-SIDS -H accept: application/json
