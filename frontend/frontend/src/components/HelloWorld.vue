@@ -1,11 +1,30 @@
 <template>
   <div class="hello">
+    <h2>SIDs</h2>
     <ul id="app">
-      <li v-for="item in airport_list" :key="item.SIDs_airport_list">
-        {{ item.SIDs_airport_list }}
+      <li v-for="SIDs_item in SIDs_airport_list" :key="SIDs_item">
+        {{ SIDs_item.airport }}
+        <h3>Waypoints</h3>
+        <ul>
+          <li v-for="SIDs_waypoint in SIDs_item.topWaypoints" :key="SIDs_waypoint">
+          Waypoint: {{ SIDs_waypoint.name }} <br>
+          Count: {{ SIDs_waypoint.count }}
+          </li>
+        </ul>
       </li>
-      <li v-for="item in airport_list" :key="item.STARs_airport_list">
-        {{ item.STARs_airport_list }}
+    </ul>
+
+    <h2>STARs</h2>
+    <ul id="app">
+      <li v-for="STARs_item in STARs_airport_list" :key="STARs_item">
+        {{ STARs_item.airport }}
+        <h3>Waypoints</h3>
+        <ul>
+          <li v-for="STARs_waypoint in STARs_item.topWaypoints" :key="STARs_waypoint">
+          Waypoint: {{ STARs_waypoint.name }} <br>
+          Count: {{ STARs_waypoint.count }}
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
@@ -14,10 +33,8 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
-import VueAxios from 'vue-axios'
 
 Vue.config.productionTip = false
-Vue.use(VueAxios, axios)
 
 export default {
   name: 'HelloWorld',
@@ -27,13 +44,14 @@ export default {
   el: '#app',
   data() {
     return {
-      airport_list: null
+      SIDs_airport_list: null,
+      STARs_airport_list: null
     }
   },
   mounted () {
     axios
       .get('http://127.0.0.1:8000/STARS-AND-SIDS')
-      .then(response => (this.airport_list = response))
+      .then(response => (this.SIDs_airport_list = response.data.SIDs_airport_list, this.STARs_airport_list = response.data.STARs_airport_list))
   }
 }
 </script>
